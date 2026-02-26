@@ -36,6 +36,28 @@ class Tree {
 
         return false;
     }
+
+    insert(value){
+        let current = this.root;
+        let parentNode = current;
+        const newNode = new Node(value);
+
+        // Exit loop when current is null while saving the current node's parent
+        while(current){
+            if(value === current.data) return;
+            else if(value < current.data){
+                parentNode = current;
+                current = current.left;
+            }
+            else if(value > current.data){
+                parentNode = current;
+                current = current.right;
+            }
+        }
+
+        if(value < parentNode.data) parentNode.left = newNode;
+        else parentNode.right = newNode;
+    }
 }
 
 

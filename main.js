@@ -5,3 +5,7 @@ prettyPrint(tree.root);
 
 console.log(tree.includes(2));
 console.log(tree.includes(10));
+
+tree.insert(10);
+prettyPrint(tree.root);
+
