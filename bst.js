@@ -97,12 +97,26 @@ class Tree {
                 }
 
                 current.data = successorNode.data;
-                
+
                 // Delete successor node
                 if(successorParent.left === successorNode) successorParent.left = successorNode.right;
                 else successorParent.right = successorNode.right;
                 return;
             }
+        }
+    }
+
+    levelOrderForEach(callback){
+        if(!callback) throw new Error("Callback function must be provided.");
+
+        const queue = [];
+        if(this.root) queue.push(this.root);
+
+        while(queue.length > 0){
+            let current = queue.shift();
+            callback(current.data);
+            if(current.left) queue.push(current.left);
+            if(current.right) queue.push(current.right);
         }
     }
 }
