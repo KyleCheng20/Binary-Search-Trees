@@ -16,3 +16,5 @@ tree.deleteItem(8);
 
 prettyPrint(tree.root);
 
+console.log(tree.height(3));
+

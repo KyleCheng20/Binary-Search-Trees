@@ -161,6 +161,26 @@ class Tree {
 
         traverse(this.root);
     }
+
+    height(value){
+        let current = this.root;
+
+        while(current){
+            if(value < current.data) current = current.left;
+            else if(value > current.data) current = current.right;
+            else return heightFromNode(current);
+        }
+
+        function heightFromNode(node){
+            if(!node) return -1;
+            
+            let leftHeight = heightFromNode(node.left);
+            let rightHeight = heightFromNode(node.right);
+            return 1 + Math.max(leftHeight, rightHeight);
+        }
+
+        return undefined;
+    }
 }
 
 
