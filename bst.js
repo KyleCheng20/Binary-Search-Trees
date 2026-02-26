@@ -173,10 +173,27 @@ class Tree {
 
         function heightFromNode(node){
             if(!node) return -1;
-            
+
             let leftHeight = heightFromNode(node.left);
             let rightHeight = heightFromNode(node.right);
             return 1 + Math.max(leftHeight, rightHeight);
+        }
+
+        return undefined;
+    }
+
+    depth(value){
+        let current = this.root;
+        let depthCount = 0;
+
+        while(current){
+            if(value < current.data){
+                depthCount++;
+                current = current.left;
+            } else if(value > current.data){
+                depthCount++;
+                current = current.right;
+            } else return depthCount;
         }
 
         return undefined;
