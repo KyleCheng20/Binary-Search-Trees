@@ -19,3 +19,5 @@ prettyPrint(tree.root);
 console.log(tree.height(3));
 console.log(tree.depth(11));
 
+console.log(tree.isBalanced());
+

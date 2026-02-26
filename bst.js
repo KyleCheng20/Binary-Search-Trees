@@ -168,19 +168,19 @@ class Tree {
         while(current){
             if(value < current.data) current = current.left;
             else if(value > current.data) current = current.right;
-            else return heightFromNode(current);
-        }
-
-        function heightFromNode(node){
-            if(!node) return -1;
-
-            let leftHeight = heightFromNode(node.left);
-            let rightHeight = heightFromNode(node.right);
-            return 1 + Math.max(leftHeight, rightHeight);
+            else return this._heightFromNode(current);
         }
 
         return undefined;
     }
+
+    _heightFromNode(node){
+            if(!node) return -1;
+
+            let leftHeight = this._heightFromNode(node.left);
+            let rightHeight = this._heightFromNode(node.right);
+            return 1 + Math.max(leftHeight, rightHeight);
+        }
 
     depth(value){
         let current = this.root;
@@ -197,6 +197,17 @@ class Tree {
         }
 
         return undefined;
+    }
+
+    isBalanced(node = this.root){
+        if(!node) return true;
+
+        let leftHeight = this._heightFromNode(node.left);
+        let rightHeight = this._heightFromNode(node.right);
+
+        if(Math.abs(leftHeight - rightHeight) > 1) return false;
+
+        return this.isBalanced(node.left) && this.isBalanced(node.right);
     }
 }
 
