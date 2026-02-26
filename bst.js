@@ -58,6 +58,53 @@ class Tree {
         if(value < parentNode.data) parentNode.left = newNode;
         else parentNode.right = newNode;
     }
+
+    deleteItem(value){
+        let current = this.root;
+        let parentNode = null;
+
+        // Traverse the tree to find the node to delete
+        while(current){
+            if(value < current.data){
+                parentNode = current;
+                current = current.left;
+            }
+            else if(value > current.data){
+                parentNode = current;
+                current = current.right
+            }
+
+            // Found node to delete
+            else{
+                // Case 1 and 2: deleting a leaf node or node with 1 child
+                if(!current.left || !current.right){
+                    // Set child to be the next single child node or null if deleting leaf
+                    const child = current.left ? current.left : current.right; 
+
+                    if(!parentNode) this.root = child;  // Deleting root node with no children or 1 child
+                    else if(parentNode.left === current) parentNode.left = child;
+                    else parentNode.right = child;
+                    return;
+                }
+
+                // Case 3: deleting a node with 2 children
+                // Find next in order successor (smallest node in the right subtree)
+                let successorParent = current;
+                let successorNode = current.right;
+                while(successorNode.left){
+                    successorParent = successorNode;
+                    successorNode = successorNode.left;
+                }
+
+                current.data = successorNode.data;
+                
+                // Delete successor node
+                if(successorParent.left === successorNode) successorParent.left = successorNode.right;
+                else successorParent.right = successorNode.right;
+                return;
+            }
+        }
+    }
 }
 
 
