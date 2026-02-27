@@ -21,3 +21,7 @@ console.log(tree.depth(11));
 
 console.log(tree.isBalanced());
 
+tree.rebalance();
+prettyPrint(tree.root);
+console.log(tree.isBalanced());
+

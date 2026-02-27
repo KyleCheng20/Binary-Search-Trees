@@ -209,6 +209,12 @@ class Tree {
 
         return this.isBalanced(node.left) && this.isBalanced(node.right);
     }
+
+    rebalance(){
+        const values = [];
+        this.inOrderForEach(value => values.push(value));
+        this.root = this.buildTree(values);
+    }
 }
 
 
